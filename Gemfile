@@ -73,4 +73,4 @@ gem "devise", "~> 5.0"
 
 # json 3.x breaks ActiveSupport::JSON.decode's positional-options call
 # (Rails 8.1.3.1 isn't compatible with it yet); pin to the last 2.x line.
-gem "json", "~> 2.9"
+gem "json", "~> 3.0"
