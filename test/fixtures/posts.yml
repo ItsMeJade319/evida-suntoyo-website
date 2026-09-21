@@ -1,0 +1,12 @@
+one:
+  title: Hello World
+  slug: hello-world
+  body: This is my first post.
+  published: true
+  published_at: <%= 1.day.ago %>
+
+two:
+  title: A Draft Post
+  slug: a-draft-post
+  body: Still working on this one.
+  published: false

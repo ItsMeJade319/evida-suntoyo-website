@@ -1,0 +1,9 @@
+Rails.application.routes.draw do
+  devise_for :admins, skip: [ :registration ], controllers: { sessions: "admins/sessions" }
+  get "admin", to: "admin#show", as: :admin
+  root "pages#about"
+  get "resume", to: "pages#resume"
+  resources :projects
+  resources :posts
+  resource :contact, only: [ :new, :create ]
+end

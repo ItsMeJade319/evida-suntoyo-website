@@ -1,0 +1,17 @@
+<% content_for :title, "Blog" %>
+
+<% if notice.present? %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+
+<h1 class="mb-4">Blog</h1>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>
+
+<% if @posts.none? %>
+  <p class="text-muted">No posts yet.</p>
+<% end %>

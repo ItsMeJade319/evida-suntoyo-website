@@ -1,0 +1,16 @@
+<% content_for :title, @project.title %>
+
+<% if notice.present? %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+
+<%= render @project %>
+
+<div class="d-flex gap-2 align-items-center">
+  <%= link_to "Back to portfolio", projects_path, class: "btn btn-outline-secondary" %>
+
+  <% if admin_signed_in? %>
+    <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-outline-secondary" %>
+    <%= button_to "Destroy this project", @project, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+  <% end %>
+</div>

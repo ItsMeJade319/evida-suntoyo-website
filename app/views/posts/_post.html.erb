@@ -1,0 +1,20 @@
+<div id="<%= dom_id post %>" class="mb-4 pb-4 border-bottom">
+  <% if post.image.attached? %>
+    <%= image_tag post.image.variant(resize_to_limit: [ 600, 400 ]), class: "img-fluid mb-3" %>
+  <% end %>
+
+  <h3>
+    <%= link_to post.title, post %>
+    <% unless post.published? %>
+      <span class="badge text-bg-warning">Draft</span>
+    <% end %>
+  </h3>
+
+  <% if post.published_at.present? %>
+    <p class="text-muted small mb-2"><%= post.published_at.strftime("%B %-d, %Y") %></p>
+  <% end %>
+
+  <p><%= truncate(post.body.to_s, length: 280, separator: " ") %></p>
+
+  <%= link_to "Read more", post %>
+</div>

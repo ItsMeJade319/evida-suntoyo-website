@@ -1,0 +1,15 @@
+<div class="border-bottom border-bottom-secondary">
+  <nav class="navbar d-flex justify-content-between py-3 container">
+    <div class="px-3">
+      <h3><%= link_to "Evida Suntoyo", root_path, class: "text-decoration-none text-body" %></h3>
+    </div>
+
+    <div class="d-flex gap-3 px-3">
+      <%= link_to "About", root_path %> |
+      <%= link_to "Portfolio", projects_path %> |
+      <%= link_to "Blog", posts_path %> |
+      <%= link_to "Resume", resume_path %> |
+      <%= link_to "Contact", new_contact_path %>
+    </div>
+  </nav>
+</div>

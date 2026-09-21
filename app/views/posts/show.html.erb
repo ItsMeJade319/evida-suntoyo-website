@@ -1,0 +1,33 @@
+<% content_for :title, @post.title %>
+
+<% if notice.present? %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+
+<article>
+  <h1>
+    <%= @post.title %>
+    <% unless @post.published? %>
+      <span class="badge text-bg-warning">Draft</span>
+    <% end %>
+  </h1>
+
+  <% if @post.published_at.present? %>
+    <p class="text-muted"><%= @post.published_at.strftime("%B %-d, %Y") %></p>
+  <% end %>
+
+  <% if @post.image.attached? %>
+    <%= image_tag @post.image.variant(resize_to_limit: [ 900, 600 ]), class: "img-fluid mb-3" %>
+  <% end %>
+
+  <div class="post-body"><%= simple_format(@post.body) %></div>
+</article>
+
+<div class="d-flex gap-2 align-items-center">
+  <%= link_to "Back to blog", posts_path, class: "btn btn-outline-secondary" %>
+
+  <% if admin_signed_in? %>
+    <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-outline-secondary" %>
+    <%= button_to "Destroy this post", @post, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+  <% end %>
+</div>
