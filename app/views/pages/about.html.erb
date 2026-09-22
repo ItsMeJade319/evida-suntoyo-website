@@ -1,3 +1,13 @@
 <%= render 'pages/about_me' %>
 
 <%= render 'pages/what_i_do' %>
+
+<%= render 'pages/career' %>
+
+<%= render 'pages/recent_guides' %>
+
+<% if @recent_posts.any? %>
+  <%= render 'pages/recent_posts' %>
+<% else %>
+  <%= render 'pages/details' %>
+<% end %>

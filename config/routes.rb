@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :guides
   resources :posts
   resource :contact, only: [ :new, :create ]
+
+  match "/404", to: "errors#not_found", via: :all
 end

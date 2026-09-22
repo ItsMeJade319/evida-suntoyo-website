@@ -16,6 +16,10 @@ module EvidaSuntoyoWebsite
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # Route 404s through our own controller/view instead of the static public/404.html,
+    # so it renders inside the app layout (navbar, footer, styles) and can be styled later.
+    config.exceptions_app = routes
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

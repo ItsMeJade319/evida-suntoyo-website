@@ -27,7 +27,7 @@ def seed_guide(slug:, title:, description:, image_filename:, steps:)
     return
   end
 
-  image_path = Rails.root.join("app/assets/images/#{image_filename}")
+  image_path = Rails.root.join("app/assets/images/placeholders/#{image_filename}")
 
   guide = Guide.new(
     title: title,
@@ -146,7 +146,7 @@ def seed_post(slug:, title:, body:, image_filename:)
     return
   end
 
-  image_path = Rails.root.join("app/assets/images/#{image_filename}")
+  image_path = Rails.root.join("app/assets/images/placeholders/#{image_filename}")
 
   post = Post.new(title: title, body: body, published: true)
   post.image.attach(io: File.open(image_path), filename: "#{slug}-cover.jpg", content_type: "image/jpeg")
