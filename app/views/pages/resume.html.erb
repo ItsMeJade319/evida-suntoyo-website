@@ -1,0 +1,20 @@
+<% content_for :title, "Resume" %>
+
+<div class="d-flex justify-content-between align-items-center py-4">
+  <div>
+    <p class="fs-5 mb-1">Resume</p>
+    <p class="fs-3 fw-bold mb-0">Evida Suntoyo De Espinosa</p>
+  </div>
+
+  <%= link_to "/resume.pdf", class: "btn btn-outline-secondary d-inline-flex align-items-center gap-1", download: true do %>
+    Download PDF
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+      <path d="M7.5 10.293V1.5a.5.5 0 0 1 1 0v8.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708z"/>
+    </svg>
+  <% end %>
+</div>
+
+<div class="ratio" style="--bs-aspect-ratio: 129%;">
+  <embed src="/resume.pdf" type="application/pdf" class="border rounded">
+</div>
