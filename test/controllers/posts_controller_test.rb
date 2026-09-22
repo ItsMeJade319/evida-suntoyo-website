@@ -60,10 +60,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select "##{ActionView::RecordIdentifier.dom_id(posts(:two))}", false
   end
 
-  test "index should list draft posts to an admin" do
+  test "index should not list draft posts to an admin on the public page" do
     sign_in admins(:one)
     get posts_url
-    assert_select "##{ActionView::RecordIdentifier.dom_id(posts(:two))}"
+    assert_select "##{ActionView::RecordIdentifier.dom_id(posts(:two))}", false
+  end
+
+  test "admin posts index should list draft posts" do
+    sign_in admins(:one)
+    get admin_posts_url
+    assert_select "body", text: /#{Regexp.escape(posts(:two).title)}/
   end
 
   test "should redirect edit to sign in when not an admin" do

@@ -77,10 +77,16 @@ class GuidesControllerTest < ActionDispatch::IntegrationTest
     assert_select "##{ActionView::RecordIdentifier.dom_id(guides(:two))}", false
   end
 
-  test "index should list draft guides to an admin" do
+  test "index should not list draft guides to an admin on the public page" do
     sign_in admins(:one)
     get guides_url
-    assert_select "##{ActionView::RecordIdentifier.dom_id(guides(:two))}"
+    assert_select "##{ActionView::RecordIdentifier.dom_id(guides(:two))}", false
+  end
+
+  test "admin guides index should list draft guides" do
+    sign_in admins(:one)
+    get admin_guides_url
+    assert_select "body", text: /#{Regexp.escape(guides(:two).title)}/
   end
 
   test "should redirect edit to sign in when not an admin" do
