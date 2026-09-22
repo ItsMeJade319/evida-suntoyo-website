@@ -1,15 +1,11 @@
-<div class="border-bottom border-bottom-secondary">
-  <nav class="navbar d-flex justify-content-between py-3 container">
-    <div class="px-3">
-      <h3><%= link_to "Evida Suntoyo", root_path, class: "text-decoration-none text-body" %></h3>
-    </div>
+<nav class="navbar container">
+  <%= link_to "Evida Suntoyo", root_path, class: "nav-brand" %>
 
-    <div class="d-flex gap-3 px-3">
-      <%= link_to "About", root_path, class: nav_link_class(root_path) %> |
-      <%= link_to "Guides", guides_path, class: nav_link_class(guides_path) %> |
-      <%= link_to "Blog", posts_path, class: nav_link_class(posts_path) %> |
-      <%= link_to "Resume", resume_path, class: nav_link_class(resume_path) %> |
-      <%= link_to "Contact", new_contact_path, class: nav_link_class(new_contact_path) %>
-    </div>
-  </nav>
-</div>
+  <div class="nav-links">
+    <%= link_to "About", root_path, class: nav_link_class(root_path) %>
+    <%= link_to "Guides", guides_path, class: nav_link_class(guides_path) %>
+    <%= link_to "Blog", posts_path, class: nav_link_class(posts_path) %>
+    <%= link_to "Contact", new_contact_path, class: nav_link_class(new_contact_path) %>
+    <%= link_to "Resume", resume_path, class: "btn btn-secondary" %>
+  </div>
+</nav>

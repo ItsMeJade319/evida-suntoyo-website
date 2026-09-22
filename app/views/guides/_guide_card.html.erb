@@ -1,26 +1,20 @@
-<div id="<%= dom_id guide %>" class="card h-100 border-0 shadow-sm">
+<div id="<%= dom_id guide %>" class="card h-100">
   <% if guide.image.attached? %>
     <%= image_tag guide.image.variant(resize_to_limit: [ 400, 400 ]), class: "card-img-top", style: "height: 240px; object-fit: cover;" %>
   <% end %>
 
   <div class="card-body d-flex flex-column p-4">
-    <h3 class="card-title h6">
+    <h3 class="card-title h5">
       <%= link_to guide.title, guide, class: "text-decoration-none text-dark" %>
       <% unless guide.published? %>
         <span class="badge text-bg-warning">Draft</span>
       <% end %>
     </h3>
-    <p class="card-text text-secondary small flex-grow-1"><%= truncate(guide.description.to_s, length: 160, separator: " ") %></p>
+    <p class="body-sm flex-grow-1"><%= truncate(guide.description.to_s, length: 160, separator: " ") %></p>
 
     <div class="d-flex gap-2 align-items-center">
-      <small class="text-muted"><%= pluralize(guide.steps.size, "step") %></small>
-      |
-      <%= link_to guide, class: "text-body text-decoration-none d-inline-flex align-items-center gap-1 small" do %>
-        Read guide
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
-        </svg>
-      <% end %>
+      <span class="caption"><%= pluralize(guide.steps.size, "step") %></span>
+      <%= link_to "Read guide →", guide, class: "link" %>
     </div>
   </div>
 </div>

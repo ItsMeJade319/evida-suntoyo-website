@@ -6,4 +6,7 @@ class PagesController < ApplicationController
 
   def resume
   end
+
+  def styleguide
+  end
 end

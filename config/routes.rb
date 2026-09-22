@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   root "pages#about"
   get "resume", to: "pages#resume"
+  get "styleguide", to: "pages#styleguide"
   resources :guides
   resources :posts
   resource :contact, only: [ :new, :create ]

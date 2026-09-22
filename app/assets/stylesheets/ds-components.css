@@ -1,0 +1,271 @@
+/* Design system components — Deep Teal & Brass.
+   Loaded after Bootstrap: shares its class names on purpose so existing
+   markup (link_to ..., class: "btn btn-primary") needs no structural change,
+   but these rules win the cascade tie and replace Bootstrap's look. */
+
+/* Button — exactly two variants, never a third without a real need. */
+
+.btn {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  padding: 15px 28px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:focus,
+.btn:active,
+.btn.active {
+  box-shadow: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+
+/* Tag — outline only, never filled. At most one tag-active per group. */
+
+.tag {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tag-neutral {
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.tag-active {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+/* Link — primary-colored text, always arrowed, never underlined. The only
+   place primary is used for text rather than a fill or border. */
+
+.link,
+.link-lg {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.link {
+  font-size: 13px;
+}
+
+.link-lg {
+  font-size: 14px;
+}
+
+.link:hover,
+.link-lg:hover {
+  color: var(--ink);
+}
+
+/* NavBar — wordmark left, links + the Resume button right, a hairline
+   underneath. Exactly one link is ever active. */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  border-bottom: 1px solid var(--primary);
+  padding-bottom: 4px;
+  font-weight: 600;
+}
+
+.navbar .btn-secondary {
+  padding: 9px 20px;
+}
+
+/* SectionLabel — the one section-heading pattern in this system: an eyebrow
+   label, optionally paired with a right-aligned .link-lg "View all →". */
+
+.section-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+/* HighlightRow — the one dated, scannable list pattern in this system. */
+
+.highlight-row-list {
+  border-top: 1px solid var(--border);
+}
+
+.highlight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--border);
+  gap: var(--space-2);
+}
+
+.highlight-row-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.highlight-row .monogram {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight-row .monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Type — the tokens' type scale, for content no component above already
+   covers (the About hero, the What I do pillars). */
+
+.h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.subtitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink-secondary);
+}
+
+.body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 400;
+  color: var(--ink-secondary);
+}
+
+.body-sm {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.caption {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--ink-muted);
+}

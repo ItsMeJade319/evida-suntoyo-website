@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def nav_link_class(path)
-    class_names("text-body", "text-decoration-none" => !current_page?(path), "text-decoration-underline" => current_page?(path))
+    class_names("nav-link", "active" => current_page?(path))
   end
 end

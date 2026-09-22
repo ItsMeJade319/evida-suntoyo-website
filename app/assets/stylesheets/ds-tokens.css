@@ -1,0 +1,43 @@
+/* Design tokens — Deep Teal & Brass. Source of truth: the "Evida Suntoyo — Deep
+   Teal & Brass" design system. Update this file by hand when tokens there change. */
+
+:root {
+  /* Color */
+  --surface: #F4F2ED;
+  --surface-tile: #E6EAE6;
+  --ink: #1B3230;
+  --ink-secondary: #24413F;
+  --ink-muted: #5E6E6B;
+  --primary: #B98A3E;
+  --on-primary: #1B3230;
+  --secondary: #8FA69E;
+  --tertiary: #12302F;
+  --border: rgba(27, 50, 48, 0.15);
+  --icon-stroke: #9CA9A4;
+
+  /* Type families */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 28px;
+  --space-4: 40px;
+  --space-5: 80px;
+
+  /* Radius */
+  --radius-sm: 3px;
+
+  /* Bootstrap bridge — re-skins the Bootstrap primitives we still rely on
+     for layout (.card, .border-end, <hr>, ...) instead of hand-overriding
+     every utility class that touches a border. */
+  --bs-border-color: var(--border);
+  --bs-border-color-translucent: var(--border);
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+}

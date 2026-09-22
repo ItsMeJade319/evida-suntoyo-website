@@ -1,0 +1,155 @@
+<% content_for :title, "Style Guide" %>
+
+<div class="py-4">
+  <p class="eyebrow mb-1">Internal — not linked from navigation</p>
+  <p class="h1 mb-1">Style guide</p>
+  <p class="body">Every token and component built for the Deep Teal & Brass design system, with the class names to use them.</p>
+</div>
+
+<div class="py-4 border-top">
+  <p class="eyebrow mb-3">Colors</p>
+  <div class="row row-cols-2 row-cols-md-4 g-3">
+    <% [
+      ["surface", "--surface"],
+      ["surface-tile", "--surface-tile"],
+      ["ink", "--ink"],
+      ["ink-secondary", "--ink-secondary"],
+      ["ink-muted", "--ink-muted"],
+      ["primary", "--primary"],
+      ["on-primary", "--on-primary"],
+      ["secondary", "--secondary"],
+      ["tertiary", "--tertiary"],
+      ["border", "--border"],
+      ["icon-stroke", "--icon-stroke"]
+    ].each do |name, var| %>
+      <div class="col">
+        <div style="background: var(<%= var %>); height: 64px; border-radius: var(--radius-sm); border: 1px solid var(--border);"></div>
+        <p class="caption mt-2 mb-0"><code><%= var %></code></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="py-4 border-top">
+  <p class="eyebrow mb-3">Type</p>
+  <div class="d-flex flex-column gap-3">
+    <div>
+      <p class="h1 mb-1">H1 heading</p>
+      <p class="caption mb-0"><code>.h1</code></p>
+    </div>
+    <div>
+      <p class="subtitle mb-1">Subtitle text</p>
+      <p class="caption mb-0"><code>.subtitle</code></p>
+    </div>
+    <div>
+      <p class="body mb-1">Body paragraph — the widest measure in the system, kept to 2–3 sentences.</p>
+      <p class="caption mb-0"><code>.body</code></p>
+    </div>
+    <div>
+      <p class="body-sm mb-1">Body small — card and guide/post descriptions.</p>
+      <p class="caption mb-0"><code>.body-sm</code></p>
+    </div>
+    <div>
+      <p class="label mb-1">Label text</p>
+      <p class="caption mb-0"><code>.label</code></p>
+    </div>
+    <div>
+      <p class="eyebrow mb-1">Eyebrow label</p>
+      <p class="caption mb-0"><code>.eyebrow</code></p>
+    </div>
+    <div>
+      <p class="caption mb-1">Caption / meta text</p>
+      <p class="caption mb-0"><code>.caption</code></p>
+    </div>
+  </div>
+</div>
+
+<div class="py-4 border-top">
+  <p class="eyebrow mb-3">Spacing &amp; radius</p>
+
+  <div class="d-flex flex-column gap-2 mb-4">
+    <% %w[1 2 3 4 5].each do |n| %>
+      <div class="d-flex align-items-center gap-3">
+        <div style="width: var(--space-<%= n %>); height: 16px; background: var(--primary);"></div>
+        <p class="caption mb-0"><code>--space-<%= n %></code></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-flex align-items-center gap-3">
+    <div style="width: 40px; height: 40px; background: var(--primary); border-radius: var(--radius-sm);"></div>
+    <p class="caption mb-0"><code>--radius-sm</code></p>
+  </div>
+</div>
+
+<div class="py-4 border-top">
+  <p class="eyebrow mb-4">Components</p>
+
+  <div class="mb-5">
+    <p class="label mb-2">Button</p>
+    <div class="d-flex align-items-center gap-3 mb-2">
+      <a href="#" class="btn btn-primary">Primary action</a>
+      <a href="#" class="btn btn-secondary">Secondary action</a>
+    </div>
+    <p class="caption mb-0"><code>.btn.btn-primary</code> &middot; <code>.btn.btn-secondary</code></p>
+  </div>
+
+  <div class="mb-5">
+    <p class="label mb-2">Tag</p>
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      <span class="tag tag-neutral">Neutral tag</span>
+      <span class="tag tag-active">Active tag</span>
+    </div>
+    <p class="caption mb-0"><code>.tag.tag-neutral</code> &middot; <code>.tag.tag-active</code></p>
+  </div>
+
+  <div class="mb-5">
+    <p class="label mb-2">Link</p>
+    <div class="d-flex align-items-center gap-4 mb-2">
+      <a href="#" class="link">Read guide →</a>
+      <a href="#" class="link-lg">View all guides →</a>
+    </div>
+    <p class="caption mb-0"><code>.link</code> &middot; <code>.link-lg</code></p>
+  </div>
+
+  <div class="mb-5">
+    <p class="label mb-2">NavBar</p>
+    <nav class="navbar mb-2">
+      <span class="nav-brand">Evida Suntoyo</span>
+      <div class="nav-links">
+        <a href="#" class="nav-link active">About</a>
+        <a href="#" class="nav-link">Guides</a>
+        <a href="#" class="btn btn-secondary">Resume</a>
+      </div>
+    </nav>
+    <p class="caption mb-0"><code>.navbar</code> &middot; <code>.nav-brand</code> &middot; <code>.nav-links</code> &middot; <code>.nav-link</code> / <code>.nav-link.active</code></p>
+  </div>
+
+  <div class="mb-5">
+    <p class="label mb-2">SectionLabel</p>
+    <div class="section-label mb-2">
+      <p class="eyebrow mb-0">Recent guides</p>
+      <a href="#" class="link-lg">View all guides →</a>
+    </div>
+    <p class="caption mb-0"><code>.section-label</code> &middot; <code>.eyebrow</code></p>
+  </div>
+
+  <div class="mb-5">
+    <p class="label mb-2">HighlightRow</p>
+    <div class="highlight-row-list mb-2">
+      <div class="highlight-row">
+        <div class="highlight-row-left">
+          <div class="monogram">
+            <%= image_tag "icons/acumatica_logo.svg", alt: "" %>
+          </div>
+          <div>
+            <p class="label mb-0">Role title</p>
+            <p class="caption mb-0">Company name</p>
+          </div>
+        </div>
+        <p class="caption mb-0">Aug 2022 - Present</p>
+      </div>
+    </div>
+    <p class="caption mb-0"><code>.highlight-row-list</code> &middot; <code>.highlight-row</code> &middot; <code>.highlight-row-left</code> &middot; <code>.monogram</code></p>
+  </div>
+</div>
