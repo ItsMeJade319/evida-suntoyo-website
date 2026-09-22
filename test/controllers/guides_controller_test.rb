@@ -36,7 +36,7 @@ class GuidesControllerTest < ActionDispatch::IntegrationTest
       post guides_url, params: { guide: { title: "New Guide" } }
     end
 
-    assert_redirected_to guide_url(Guide.last)
+    assert_redirected_to admin_url
   end
 
   test "should create guide with nested steps when signed in as admin" do
@@ -52,7 +52,7 @@ class GuidesControllerTest < ActionDispatch::IntegrationTest
     end
 
     guide = Guide.last
-    assert_redirected_to guide_url(guide)
+    assert_redirected_to admin_url
     assert_equal [ "Only step" ], guide.steps.map(&:title)
   end
 
@@ -102,7 +102,7 @@ class GuidesControllerTest < ActionDispatch::IntegrationTest
   test "should update guide when signed in as admin" do
     sign_in admins(:one)
     patch guide_url(@guide), params: { guide: { title: "Updated Title" } }
-    assert_redirected_to guide_url(@guide)
+    assert_redirected_to admin_url
   end
 
   test "should not destroy guide when not an admin" do
@@ -120,6 +120,6 @@ class GuidesControllerTest < ActionDispatch::IntegrationTest
       delete guide_url(@guide)
     end
 
-    assert_redirected_to guides_url
+    assert_redirected_to admin_url
   end
 end

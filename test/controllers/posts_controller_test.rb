@@ -36,7 +36,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       post posts_url, params: { post: { title: "New Post" } }
     end
 
-    assert_redirected_to post_url(Post.last)
+    assert_redirected_to admin_url
   end
 
   test "should show post" do
@@ -85,7 +85,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should update post when signed in as admin" do
     sign_in admins(:one)
     patch post_url(@post), params: { post: { title: "Updated Title" } }
-    assert_redirected_to post_url(@post)
+    assert_redirected_to admin_url
   end
 
   test "should not destroy post when not an admin" do
@@ -103,6 +103,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       delete post_url(@post)
     end
 
-    assert_redirected_to posts_url
+    assert_redirected_to admin_url
   end
 end

@@ -39,6 +39,7 @@ gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 2.1"
+gem "ruby-vips", "~> 2.0"
 
 # Active Storage service for uploading to Cloudinary [https://github.com/septs/activestorage-cloudinary-service]
 gem "cloudinary"
@@ -73,4 +74,4 @@ gem "devise", "~> 5.0"
 
 # json 3.x breaks ActiveSupport::JSON.decode's positional-options call
 # (Rails 8.1.3.1 isn't compatible with it yet); pin to the last 2.x line.
-gem "json", "~> 3.0"
+gem "json", "~> 2.9"
