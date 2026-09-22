@@ -1,11 +1,14 @@
 <% content_for :title, "New guide" %>
 
-<h1>New guide</h1>
+<div class="mb-3">
+  <%= link_to admin_path, class: "text-decoration-none text-secondary small d-inline-flex align-items-center gap-1" do %>
+    <i class="bi bi-arrow-left-short"></i>
+    Back to dashboard
+  <% end %>
+</div>
 
-<%= render "form", guide: @guide %>
+<p class="admin-title fs-3 mb-4">New guide</p>
 
-<br>
-
-<div>
-  <%= link_to "Back to guides", guides_path %>
+<div class="admin-form-card">
+  <%= render "form", guide: @guide %>
 </div>

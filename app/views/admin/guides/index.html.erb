@@ -1,0 +1,30 @@
+<% content_for :title, "Manage guides" %>
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+  <%= link_to admin_path, class: "text-decoration-none text-secondary small d-inline-flex align-items-center gap-1" do %>
+    <i class="bi bi-arrow-left-short"></i>
+    Back to dashboard
+  <% end %>
+  <%= link_to guides_path, class: "text-decoration-none text-secondary small d-inline-flex align-items-center gap-1" do %>
+    View public page
+    <i class="bi bi-box-arrow-up-right"></i>
+  <% end %>
+</div>
+
+<div class="admin-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+  <p class="admin-title fs-3 mb-0">All guides</p>
+  <%= link_to new_guide_path(return_to: request.original_fullpath), class: "btn btn-sm btn-primary d-inline-flex align-items-center gap-1" do %>
+    <i class="bi bi-plus-lg"></i>
+    New guide
+  <% end %>
+</div>
+
+<div class="admin-panel">
+  <% @guides.each do |guide| %>
+    <%= render "guides/admin_row", guide: guide %>
+  <% end %>
+
+  <% if @guides.none? %>
+    <p class="admin-list-empty mb-0">No guides yet.</p>
+  <% end %>
+</div>

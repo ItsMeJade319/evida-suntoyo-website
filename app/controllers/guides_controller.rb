@@ -5,7 +5,7 @@ class GuidesController < ApplicationController
 
   # GET /guides or /guides.json
   def index
-    @guides = admin_signed_in? ? Guide.order(created_at: :desc) : Guide.published
+    @guides = Guide.published
   end
 
   # GET /guides/1 or /guides/1.json

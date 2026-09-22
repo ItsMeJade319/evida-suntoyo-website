@@ -1,53 +1,146 @@
 <% content_for :title, "Admin dashboard" %>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h1>Admin dashboard</h1>
-  <div class="d-flex align-items-center gap-2">
-    <span class="text-muted"><%= current_admin.email %></span>
-    <%= button_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary", form: { data: { turbo_confirm: "Are you sure you want to sign out?" } } %>
+<div class="admin-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+  <div>
+    <p class="admin-title fs-3 mb-1">Admin dashboard</p>
+    <p class="admin-subtitle mb-0">Manage your guides and blog posts</p>
+  </div>
+
+  <div class="d-flex align-items-center gap-3">
+    <span class="text-secondary d-inline-flex align-items-center gap-2">
+      <i class="bi bi-person-circle"></i>
+      <%= current_admin.email %>
+    </span>
+    <%= button_to destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1", form: { data: { turbo_confirm: "Are you sure you want to sign out?" } } do %>
+      <i class="bi bi-box-arrow-right"></i>
+      Sign out
+    <% end %>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="d-flex justify-content-between align-items-center mb-2">
-      <h2 class="h4 mb-0">Guides (<%= @guides.size %>)</h2>
-      <%= link_to "New guide", new_guide_path(return_to: request.original_fullpath), class: "btn btn-sm btn-primary" %>
+<div class="row g-3 mb-4">
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="bi bi-journal-richtext"></i></div>
+      <div>
+        <p class="stat-value mb-0"><%= @guides.size %></p>
+        <p class="stat-label mb-0">Guides</p>
+      </div>
     </div>
-    <ul class="list-group mb-4">
-      <% @guides.each do |guide| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= link_to guide.to_s.presence || "Guide ##{guide.id}", guide_path(guide) %>
-          <span>
-            <%= link_to "Edit", edit_guide_path(guide, return_to: request.original_fullpath), class: "btn btn-sm btn-outline-secondary" %>
-            <%= button_to "Delete", guide_path(guide, return_to: request.original_fullpath), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
-          </span>
-        </li>
-      <% end %>
-      <% if @guides.none? %>
-        <li class="list-group-item text-muted">No guides yet.</li>
-      <% end %>
-    </ul>
   </div>
 
-  <div class="col-md-6">
-    <div class="d-flex justify-content-between align-items-center mb-2">
-      <h2 class="h4 mb-0">Posts (<%= @posts.size %>)</h2>
-      <%= link_to "New post", new_post_path(return_to: request.original_fullpath), class: "btn btn-sm btn-primary" %>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="bi bi-check2-circle"></i></div>
+      <div>
+        <p class="stat-value mb-0"><%= @guides.count(&:published?) %></p>
+        <p class="stat-label mb-0">Published guides</p>
+      </div>
     </div>
-    <ul class="list-group mb-4">
-      <% @posts.each do |post| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= link_to post.to_s.presence || "Post ##{post.id}", post_path(post) %>
-          <span>
-            <%= link_to "Edit", edit_post_path(post, return_to: request.original_fullpath), class: "btn btn-sm btn-outline-secondary" %>
-            <%= button_to "Delete", post_path(post, return_to: request.original_fullpath), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
-          </span>
-        </li>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="bi bi-file-post"></i></div>
+      <div>
+        <p class="stat-value mb-0"><%= @posts.size %></p>
+        <p class="stat-label mb-0">Posts</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="bi bi-check2-circle"></i></div>
+      <div>
+        <p class="stat-value mb-0"><%= @posts.count(&:published?) %></p>
+        <p class="stat-label mb-0">Published posts</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="admin-panel mb-4">
+  <div class="admin-panel-header">
+    <p class="fw-bold text-secondary text-uppercase mb-0">Drafts (<%= @drafts.size %>)</p>
+  </div>
+
+  <% @drafts.each do |item| %>
+    <% is_guide = item.is_a?(Guide) %>
+    <div class="admin-list-item">
+      <% if item.image.attached? %>
+        <%= image_tag item.image.variant(resize_to_limit: [ 80, 80 ]), class: "admin-thumb" %>
+      <% else %>
+        <div class="admin-thumb-placeholder"><i class="bi bi-image"></i></div>
       <% end %>
+
+      <div class="flex-grow-1" style="min-width: 0;">
+        <span class="badge text-bg-secondary mb-1"><%= is_guide ? "Guide" : "Post" %></span>
+        <%= link_to item.to_s.presence || "##{item.id}", (is_guide ? guide_path(item) : post_path(item)), class: "d-block text-body text-decoration-none fw-semibold text-truncate" %>
+      </div>
+
+      <div class="d-flex gap-2 flex-shrink-0">
+        <%= link_to (is_guide ? edit_guide_path(item, return_to: request.original_fullpath) : edit_post_path(item, return_to: request.original_fullpath)), class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="bi bi-pencil"></i>
+        <% end %>
+        <%= button_to (is_guide ? guide_path(item, return_to: request.original_fullpath) : post_path(item, return_to: request.original_fullpath)), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } do %>
+          <i class="bi bi-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @drafts.empty? %>
+    <p class="admin-list-empty mb-0">No drafts &mdash; everything is published.</p>
+  <% end %>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="admin-panel">
+      <div class="admin-panel-header">
+        <p class="fw-bold text-secondary text-uppercase mb-0">Guides</p>
+        <%= link_to new_guide_path(return_to: request.original_fullpath), class: "btn btn-sm btn-primary d-inline-flex align-items-center gap-1" do %>
+          <i class="bi bi-plus-lg"></i>
+          New guide
+        <% end %>
+      </div>
+
+      <% @recent_guides.each do |guide| %>
+        <%= render "guides/admin_row", guide: guide %>
+      <% end %>
+
+      <% if @guides.none? %>
+        <p class="admin-list-empty mb-0">No guides yet.</p>
+      <% end %>
+
+      <div class="p-3 text-center border-top">
+        <%= link_to "See all guides", admin_guides_path, class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="admin-panel">
+      <div class="admin-panel-header">
+        <p class="fw-bold text-secondary text-uppercase mb-0">Posts</p>
+        <%= link_to new_post_path(return_to: request.original_fullpath), class: "btn btn-sm btn-primary d-inline-flex align-items-center gap-1" do %>
+          <i class="bi bi-plus-lg"></i>
+          New post
+        <% end %>
+      </div>
+
+      <% @recent_posts.each do |post| %>
+        <%= render "posts/admin_row", post: post %>
+      <% end %>
+
       <% if @posts.none? %>
-        <li class="list-group-item text-muted">No posts yet.</li>
+        <p class="admin-list-empty mb-0">No posts yet.</p>
       <% end %>
-    </ul>
+
+      <div class="p-3 text-center border-top">
+        <%= link_to "See all posts", admin_posts_path, class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    </div>
   </div>
 </div>

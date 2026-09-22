@@ -1,0 +1,26 @@
+<div class="admin-list-item">
+  <% if post.image.attached? %>
+    <%= image_tag post.image.variant(resize_to_limit: [ 80, 80 ]), class: "admin-thumb" %>
+  <% else %>
+    <div class="admin-thumb-placeholder"><i class="bi bi-image"></i></div>
+  <% end %>
+
+  <div class="flex-grow-1" style="min-width: 0;">
+    <%= link_to post.to_s.presence || "Post ##{post.id}", post_path(post), class: "d-block text-body text-decoration-none fw-semibold text-truncate" %>
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge <%= post.published? ? "text-bg-success" : "text-bg-warning" %>"><%= post.published? ? "Published" : "Draft" %></span>
+      <% if post.published_at.present? %>
+        <span class="text-muted small"><%= post.published_at.strftime("%b %-d, %Y") %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2 flex-shrink-0">
+    <%= link_to edit_post_path(post, return_to: request.original_fullpath), class: "btn btn-sm btn-outline-secondary" do %>
+      <i class="bi bi-pencil"></i>
+    <% end %>
+    <%= button_to post_path(post, return_to: request.original_fullpath), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } do %>
+      <i class="bi bi-trash"></i>
+    <% end %>
+  </div>
+</div>

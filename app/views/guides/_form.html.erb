@@ -38,10 +38,12 @@
     <%= form.file_field :image, class: "form-control", accept: "image/*" %>
   </div>
 
-  <div class="form-check mb-4">
-    <%= form.check_box :published, class: "form-check-input" %>
-    <%= form.label :published, class: "form-check-label" %>
-  </div>
+  <% if guide.persisted? %>
+    <p class="text-muted small mb-4">
+      Currently:
+      <span class="badge <%= guide.published? ? "text-bg-success" : "text-bg-warning" %>"><%= guide.published? ? "Published" : "Draft" %></span>
+    </p>
+  <% end %>
 
   <div class="mb-4" data-controller="nested-fields">
     <h2 class="h5">Steps</h2>
@@ -61,7 +63,14 @@
     <button type="button" class="btn btn-outline-secondary btn-sm" data-action="nested-fields#add">Add step</button>
   </div>
 
-  <div>
-    <%= form.submit class: "btn btn-primary" %>
+  <div class="d-flex gap-2">
+    <%= button_tag type: "submit", name: "guide[published]", value: "true", class: "btn btn-primary d-inline-flex align-items-center gap-1" do %>
+      <i class="bi bi-check2-circle"></i>
+      Publish
+    <% end %>
+    <%= button_tag type: "submit", name: "guide[published]", value: "false", class: "btn btn-outline-secondary d-inline-flex align-items-center gap-1" do %>
+      <i class="bi bi-file-earmark"></i>
+      Save as draft
+    <% end %>
   </div>
 <% end %>

@@ -4,6 +4,15 @@
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
 
+<% if admin_signed_in? %>
+  <div class="text-end mb-2">
+    <%= link_to admin_guides_path, class: "text-decoration-none text-secondary small d-inline-flex align-items-center gap-1" do %>
+      <i class="bi bi-pencil"></i>
+      Manage guides
+    <% end %>
+  </div>
+<% end %>
+
 <h1>Guides</h1>
 <hr>
 

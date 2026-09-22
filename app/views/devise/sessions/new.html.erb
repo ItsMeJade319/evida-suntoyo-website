@@ -1,0 +1,26 @@
+<% content_for :title, "Log in" %>
+
+<div class="admin-auth-wrap">
+  <div class="admin-auth-card">
+    <p class="fs-4 fw-bold mb-1">Admin log in</p>
+    <p class="text-secondary mb-4">Sign in to manage guides and posts.</p>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="mb-3">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :password, class: "form-label" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <%= f.submit "Log in", class: "btn btn-primary w-100" %>
+    <% end %>
+
+    <div class="text-center mt-3">
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-decoration-none text-secondary small" %>
+    </div>
+  </div>
+</div>
