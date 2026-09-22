@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "admin", to: "admin#show", as: :admin
   root "pages#about"
   get "resume", to: "pages#resume"
-  resources :projects
+  resources :guides
   resources :posts
   resource :contact, only: [ :new, :create ]
 end

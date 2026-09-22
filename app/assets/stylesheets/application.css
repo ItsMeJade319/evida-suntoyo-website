@@ -1,3 +1,7 @@
+.container {
+  --bs-gutter-x: 1rem;
+}
+
 .p6{
   padding: 6rem;
 }

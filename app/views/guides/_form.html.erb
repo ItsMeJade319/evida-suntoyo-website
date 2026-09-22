@@ -1,0 +1,65 @@
+<%= form_with(model: guide) do |form| %>
+  <% if guide.errors.any? %>
+    <div class="alert alert-danger">
+      <h2 class="h5"><%= pluralize(guide.errors.count, "error") %> prohibited this guide from being saved:</h2>
+
+      <ul class="mb-0">
+        <% guide.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :slug, class: "form-label" %>
+    <%= form.text_field :slug, class: "form-control", placeholder: "auto-generated from title if left blank" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, "Intro", class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: 4 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :image, "Cover image", class: "form-label" %>
+    <% if guide.image.attached? %>
+      <div class="mb-2">
+        <%= image_tag guide.image.variant(resize_to_limit: [ 200, 200 ]), class: "img-thumbnail" %>
+      </div>
+    <% end %>
+    <%= form.file_field :image, class: "form-control", accept: "image/*" %>
+  </div>
+
+  <div class="form-check mb-4">
+    <%= form.check_box :published, class: "form-check-input" %>
+    <%= form.label :published, class: "form-check-label" %>
+  </div>
+
+  <div class="mb-4" data-controller="nested-fields">
+    <h2 class="h5">Steps</h2>
+
+    <div data-nested-fields-target="container">
+      <%= form.fields_for :steps do |step_form| %>
+        <%= render "step_fields", form: step_form %>
+      <% end %>
+    </div>
+
+    <template data-nested-fields-target="template">
+      <%= form.fields_for :steps, GuideStep.new, child_index: "NEW_RECORD" do |step_form| %>
+        <%= render "step_fields", form: step_form %>
+      <% end %>
+    </template>
+
+    <button type="button" class="btn btn-outline-secondary btn-sm" data-action="nested-fields#add">Add step</button>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

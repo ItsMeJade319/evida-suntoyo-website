@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_21_180002) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_22_121115) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -51,6 +51,29 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_180002) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "guide_steps", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.integer "guide_id", null: false
+    t.integer "position", default: 0, null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["guide_id", "position"], name: "index_guide_steps_on_guide_id_and_position"
+    t.index ["guide_id"], name: "index_guide_steps_on_guide_id"
+  end
+
+  create_table "guides", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.boolean "published", default: false, null: false
+    t.datetime "published_at"
+    t.string "slug"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["published_at"], name: "index_guides_on_published_at"
+    t.index ["slug"], name: "index_guides_on_slug", unique: true
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -63,18 +86,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_180002) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.text "description"
-    t.integer "position", default: 0, null: false
-    t.string "project_link"
-    t.string "repo_link"
-    t.string "tech_stack"
-    t.string "title"
-    t.datetime "updated_at", null: false
-    t.index ["position"], name: "index_projects_on_position"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "guide_steps", "guides"
 end

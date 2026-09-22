@@ -1,0 +1,11 @@
+one:
+  guide: one
+  title: Set up Rails
+  content: Install Ruby and Rails, then generate a new app.
+  position: 0
+
+two:
+  guide: one
+  title: Deploy it
+  content: Push it to your host of choice.
+  position: 1

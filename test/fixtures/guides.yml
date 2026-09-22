@@ -1,0 +1,12 @@
+one:
+  title: Build a Personal Website
+  slug: build-a-personal-website
+  description: A short intro guide about building a personal website.
+  published: true
+  published_at: <%= 1.day.ago %>
+
+two:
+  title: A Draft Guide
+  slug: a-draft-guide
+  description: Still working on this one.
+  published: false

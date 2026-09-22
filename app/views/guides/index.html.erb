@@ -1,0 +1,17 @@
+<% content_for :title, "Guides" %>
+
+<% if notice.present? %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+
+<h1 class="mb-4">Guides</h1>
+
+<div id="guides" class="d-flex flex-column gap-4">
+  <% @guides.each do |guide| %>
+    <%= render guide %>
+  <% end %>
+</div>
+
+<% if @guides.none? %>
+  <p class="text-muted">No guides yet.</p>
+<% end %>

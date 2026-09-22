@@ -1,0 +1,53 @@
+<% content_for :title, @guide.title %>
+
+<% if notice.present? %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+
+<article>
+  <h1>
+    <%= @guide.title %>
+    <% unless @guide.published? %>
+      <span class="badge text-bg-warning">Draft</span>
+    <% end %>
+  </h1>
+
+  <% if @guide.published_at.present? %>
+    <p class="text-muted"><%= @guide.published_at.strftime("%B %-d, %Y") %></p>
+  <% end %>
+
+  <% if @guide.image.attached? %>
+    <%= image_tag @guide.image.variant(resize_to_limit: [ 900, 600 ]), class: "img-fluid mb-3" %>
+  <% end %>
+
+  <% if @guide.description.present? %>
+    <div class="guide-intro lead"><%= simple_format(@guide.description) %></div>
+  <% end %>
+
+  <ol class="list-unstyled">
+    <% @guide.steps.each_with_index do |step, index| %>
+      <li class="mb-4">
+        <h3>Step <%= index + 1 %>: <%= step.title %></h3>
+
+        <% if step.image.attached? %>
+          <%= image_tag step.image.variant(resize_to_limit: [ 800, 600 ]), class: "img-fluid mb-2" %>
+        <% end %>
+
+        <%= simple_format(step.content) %>
+      </li>
+    <% end %>
+  </ol>
+
+  <% if @guide.steps.none? %>
+    <p class="text-muted">No steps yet.</p>
+  <% end %>
+</article>
+
+<div class="d-flex gap-2 align-items-center">
+  <%= link_to "Back to guides", guides_path, class: "btn btn-outline-secondary" %>
+
+  <% if admin_signed_in? %>
+    <%= link_to "Edit this guide", edit_guide_path(@guide), class: "btn btn-outline-secondary" %>
+    <%= button_to "Destroy this guide", @guide, method: :delete, class: "btn btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+  <% end %>
+</div>

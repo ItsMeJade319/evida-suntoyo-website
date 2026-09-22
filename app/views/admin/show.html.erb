@@ -11,21 +11,21 @@
 <div class="row">
   <div class="col-md-6">
     <div class="d-flex justify-content-between align-items-center mb-2">
-      <h2 class="h4 mb-0">Projects (<%= @projects.size %>)</h2>
-      <%= link_to "New project", new_project_path, class: "btn btn-sm btn-primary" %>
+      <h2 class="h4 mb-0">Guides (<%= @guides.size %>)</h2>
+      <%= link_to "New guide", new_guide_path, class: "btn btn-sm btn-primary" %>
     </div>
     <ul class="list-group mb-4">
-      <% @projects.each do |project| %>
+      <% @guides.each do |guide| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= link_to project.to_s.presence || "Project ##{project.id}", project_path(project) %>
+          <%= link_to guide.to_s.presence || "Guide ##{guide.id}", guide_path(guide) %>
           <span>
-            <%= link_to "Edit", edit_project_path(project), class: "btn btn-sm btn-outline-secondary" %>
-            <%= button_to "Delete", project_path(project), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+            <%= link_to "Edit", edit_guide_path(guide), class: "btn btn-sm btn-outline-secondary" %>
+            <%= button_to "Delete", guide_path(guide), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
           </span>
         </li>
       <% end %>
-      <% if @projects.none? %>
-        <li class="list-group-item text-muted">No projects yet.</li>
+      <% if @guides.none? %>
+        <li class="list-group-item text-muted">No guides yet.</li>
       <% end %>
     </ul>
   </div>
