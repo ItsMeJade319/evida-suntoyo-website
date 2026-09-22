@@ -4,9 +4,10 @@
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
 
-<h1 class="mb-4">Guides</h1>
+<h1>Guides</h1>
+<hr>
 
-<div id="guides" class="d-flex flex-column gap-4">
+<div id="guides" class="d-flex flex-column gap-4 pt-2">
   <% @guides.each do |guide| %>
     <%= render guide %>
   <% end %>

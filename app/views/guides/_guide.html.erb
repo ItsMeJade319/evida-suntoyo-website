@@ -10,7 +10,7 @@
         <span class="badge text-bg-warning">Draft</span>
       <% end %>
     </h3>
-    <p class="card-text text-secondary"><%= guide.description %></p>
+    <p class="card-text text-secondary"><%= truncate(guide.description.to_s, length: 150, separator: " ") %></p>
 
     <div class="d-flex gap-2">
       <p class="card-text mb-2">

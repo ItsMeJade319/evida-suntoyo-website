@@ -8,9 +8,15 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "generates a slug from the title when left blank" do
-    post = Post.new(title: "Hello, World!")
+    post = Post.new(title: "A Totally Unique Title!")
     post.valid?
-    assert_equal "hello-world", post.slug
+    assert_equal "a-totally-unique-title", post.slug
+  end
+
+  test "appends a numeric suffix when the generated slug is already taken" do
+    post = Post.new(title: posts(:one).title)
+    post.valid?
+    assert_equal "hello-world-2", post.slug
   end
 
   test "sets published_at when published for the first time" do

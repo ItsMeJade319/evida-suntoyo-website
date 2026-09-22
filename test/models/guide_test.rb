@@ -13,6 +13,12 @@ class GuideTest < ActiveSupport::TestCase
     assert_equal "hello-world", guide.slug
   end
 
+  test "appends a numeric suffix when the generated slug is already taken" do
+    guide = Guide.new(title: guides(:one).title)
+    guide.valid?
+    assert_equal "build-a-personal-website-2", guide.slug
+  end
+
   test "sets published_at when published for the first time" do
     guide = Guide.create!(title: "Announcing Something", published: true)
     assert_not_nil guide.published_at

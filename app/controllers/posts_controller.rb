@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to admin_path, notice: "Post was successfully created." }
+        format.html { redirect_to safe_redirect_target(admin_path), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_content }
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to admin_path, notice: "Post was successfully updated.", status: :see_other }
+        format.html { redirect_to safe_redirect_target(admin_path), notice: "Post was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_content }
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     @post.destroy!
 
     respond_to do |format|
-      format.html { redirect_to admin_path, notice: "Post was successfully destroyed.", status: :see_other }
+      format.html { redirect_to safe_redirect_target(posts_path), notice: "Post was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
   end

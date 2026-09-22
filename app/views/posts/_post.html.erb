@@ -1,20 +1,29 @@
-<div id="<%= dom_id post %>" class="mb-4 pb-4 border-bottom">
-  <% if post.image.attached? %>
-    <%= image_tag post.image.variant(resize_to_limit: [ 600, 400 ]), class: "img-fluid mb-3" %>
-  <% end %>
-
-  <h3>
-    <%= link_to post.title, post %>
-    <% unless post.published? %>
-      <span class="badge text-bg-warning">Draft</span>
+<div id="<%= dom_id post %>" class="col">
+  <div class="card post-card h-100">
+    <% if post.image.attached? %>
+      <%= image_tag post.image.variant(resize_to_limit: [ 600, 400 ]), class: "card-img-top post-card-image" %>
     <% end %>
-  </h3>
 
-  <% if post.published_at.present? %>
-    <p class="text-muted small mb-2"><%= post.published_at.strftime("%B %-d, %Y") %></p>
-  <% end %>
+    <div class="card-body post-card-body">
+      <h3 class="post-card-title">
+        <%= link_to post.title, post, class: "card-title text-decoration-none text-body" %>
+        <% unless post.published? %>
+          <span class="badge text-bg-warning">Draft</span>
+        <% end %>
+      </h3>
 
-  <p><%= truncate(post.body.to_s, length: 280, separator: " ") %></p>
+      <% if post.published_at.present? %>
+        <p class="text-muted small mb-2"><%= post.published_at.strftime("%B %-d, %Y") %></p>
+      <% end %>
 
-  <%= link_to "Read more", post %>
+      <p class="post-card-excerpt"><%= truncate(post.body.to_s, length: 180, separator: " ") %></p>
+
+      <%= link_to post, class: "align-self-start text-body text-decoration-none d-inline-flex align-items-center gap-1" do %>
+        Read more
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+        </svg>
+      <% end %>
+    </div>
+  </div>
 </div>

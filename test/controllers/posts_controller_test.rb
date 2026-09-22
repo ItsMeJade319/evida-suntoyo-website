@@ -103,6 +103,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       delete post_url(@post)
     end
 
+    assert_redirected_to posts_url
+  end
+
+  test "should destroy post and return to return_to param when signed in as admin" do
+    sign_in admins(:one)
+
+    assert_difference("Post.count", -1) do
+      delete post_url(@post), params: { return_to: admin_path }
+    end
+
     assert_redirected_to admin_url
   end
 end

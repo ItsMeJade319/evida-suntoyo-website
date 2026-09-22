@@ -4,9 +4,12 @@
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
 
-<h1 class="mb-4">Blog</h1>
+<div class="text-center py-3">
+  <h1 class="mb-4 text-uppercase text-bolder">Blog</h1>
+  <hr>
+</div>
 
-<div id="posts">
+<div id="posts" class="row row-cols-1 row-cols-md-2 g-4">
   <% @posts.each do |post| %>
     <%= render post %>
   <% end %>

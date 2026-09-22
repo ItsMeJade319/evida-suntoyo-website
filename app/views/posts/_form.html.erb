@@ -1,4 +1,6 @@
 <%= form_with(model: post) do |form| %>
+  <%= hidden_field_tag :return_to, params[:return_to] %>
+
   <% if post.errors.any? %>
     <div class="alert alert-danger">
       <h2 class="h5"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>

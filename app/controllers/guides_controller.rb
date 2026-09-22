@@ -27,7 +27,7 @@ class GuidesController < ApplicationController
 
     respond_to do |format|
       if @guide.save
-        format.html { redirect_to admin_path, notice: "Guide was successfully created." }
+        format.html { redirect_to safe_redirect_target(admin_path), notice: "Guide was successfully created." }
         format.json { render :show, status: :created, location: @guide }
       else
         format.html { render :new, status: :unprocessable_content }
@@ -40,7 +40,7 @@ class GuidesController < ApplicationController
   def update
     respond_to do |format|
       if @guide.update(guide_params)
-        format.html { redirect_to admin_path, notice: "Guide was successfully updated.", status: :see_other }
+        format.html { redirect_to safe_redirect_target(admin_path), notice: "Guide was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @guide }
       else
         format.html { render :edit, status: :unprocessable_content }
@@ -54,7 +54,7 @@ class GuidesController < ApplicationController
     @guide.destroy!
 
     respond_to do |format|
-      format.html { redirect_to admin_path, notice: "Guide was successfully destroyed.", status: :see_other }
+      format.html { redirect_to safe_redirect_target(guides_path), notice: "Guide was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
   end

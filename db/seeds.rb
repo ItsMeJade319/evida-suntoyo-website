@@ -137,3 +137,66 @@ seed_guide(
     { title: "Balance and hold", content: "Make small adjustments with your fingers to stay balanced, and focus on a fixed point on the floor to hold the position longer." }
   ]
 )
+
+# Demo blog posts with placeholder images, just to preview the blog layout.
+# Safe to re-run — skips any post that already exists.
+def seed_post(slug:, title:, body:, image_filename:)
+  if Post.exists?(slug: slug)
+    puts "Skipping demo post — '#{title}' already exists."
+    return
+  end
+
+  image_path = Rails.root.join("app/assets/images/#{image_filename}")
+
+  post = Post.new(title: title, body: body, published: true)
+  post.image.attach(io: File.open(image_path), filename: "#{slug}-cover.jpg", content_type: "image/jpeg")
+  post.save!
+
+  puts "Demo post ready: #{title}"
+end
+
+seed_post(
+  slug: "the-case-for-taking-the-long-way-home",
+  title: "The Case for Taking the Long Way Home",
+  body: "Every so often I skip the highway and take the back roads instead, even when it adds twenty " \
+    "minutes to the drive. There's something about the extra time that resets my head in a way the " \
+    "fast route never does.\n\n" \
+    "It's not really about the scenery, though the scenery helps. It's that a longer drive forces a " \
+    "kind of idle thinking you can't get anywhere else — no podcast, no phone, just the road and " \
+    "whatever your brain wants to chew on. Half my best ideas this year showed up somewhere between " \
+    "two stoplights I didn't need to hit.\n\n" \
+    "So if you're ever debating the quick way versus the long way, and you're not actually in a hurry, " \
+    "take the long way. You'll get where you're going eventually, and you might figure something out " \
+    "along the way.",
+  image_filename: "road.jpg"
+)
+
+seed_post(
+  slug: "why-i-started-timing-my-coffee-instead-of-my-work",
+  title: "Why I Started Timing My Coffee Instead of My Work",
+  body: "I used to run a timer for focused work blocks — twenty-five minutes on, five off, the usual. " \
+    "It worked fine, but it also made every break feel like it was borrowed time I owed back to the " \
+    "timer. So I flipped it: now I only time the coffee.\n\n" \
+    "The rule is simple. I make a cup, and however long it takes to drink it while it's actually hot, " \
+    "that's my break. No phone, no scrolling, just the cup. When it's empty or lukewarm, I'm back at " \
+    "the desk. It turns out that's usually somewhere between eight and twelve minutes, which is close " \
+    "enough to what a 'real' break should be, except it doesn't feel like a countdown.\n\n" \
+    "It's a small trick, but it changed how breaks feel. A timer measures how much time you're allowed. " \
+    "A cup of coffee just tells you when it's done, and somehow that's easier to listen to.",
+  image_filename: "gray.jpeg"
+)
+
+seed_post(
+  slug: "a-short-defense-of-boring-weekends",
+  title: "A Short Defense of Boring Weekends",
+  body: "For a while I treated every free Saturday like it needed a plan — a hike, an event, a trip " \
+    "somewhere, anything to make it count. Eventually I noticed the weekends I actually looked forward " \
+    "to all week were the boring ones: laundry, a long lunch, nothing on the calendar.\n\n" \
+    "There's a difference between a boring weekend and a wasted one, though it took me a while to see " \
+    "it. A wasted weekend is one you don't remember choosing. A boring weekend is one where you " \
+    "deliberately chose to do less, and that choice is doing a lot of the work — it's rest you picked " \
+    "on purpose, not rest you defaulted into because you ran out of energy for anything else.\n\n" \
+    "So now I try to leave at least one weekend a month completely unplanned, on purpose. It's not " \
+    "laziness, it's maintenance. Everything else in life runs better after it.",
+  image_filename: "road.jpg"
+)

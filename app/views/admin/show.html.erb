@@ -4,7 +4,7 @@
   <h1>Admin dashboard</h1>
   <div class="d-flex align-items-center gap-2">
     <span class="text-muted"><%= current_admin.email %></span>
-    <%= button_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+    <%= button_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary", form: { data: { turbo_confirm: "Are you sure you want to sign out?" } } %>
   </div>
 </div>
 
@@ -12,15 +12,15 @@
   <div class="col-md-6">
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h2 class="h4 mb-0">Guides (<%= @guides.size %>)</h2>
-      <%= link_to "New guide", new_guide_path, class: "btn btn-sm btn-primary" %>
+      <%= link_to "New guide", new_guide_path(return_to: request.original_fullpath), class: "btn btn-sm btn-primary" %>
     </div>
     <ul class="list-group mb-4">
       <% @guides.each do |guide| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= link_to guide.to_s.presence || "Guide ##{guide.id}", guide_path(guide) %>
           <span>
-            <%= link_to "Edit", edit_guide_path(guide), class: "btn btn-sm btn-outline-secondary" %>
-            <%= button_to "Delete", guide_path(guide), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+            <%= link_to "Edit", edit_guide_path(guide, return_to: request.original_fullpath), class: "btn btn-sm btn-outline-secondary" %>
+            <%= button_to "Delete", guide_path(guide, return_to: request.original_fullpath), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
           </span>
         </li>
       <% end %>
@@ -33,15 +33,15 @@
   <div class="col-md-6">
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h2 class="h4 mb-0">Posts (<%= @posts.size %>)</h2>
-      <%= link_to "New post", new_post_path, class: "btn btn-sm btn-primary" %>
+      <%= link_to "New post", new_post_path(return_to: request.original_fullpath), class: "btn btn-sm btn-primary" %>
     </div>
     <ul class="list-group mb-4">
       <% @posts.each do |post| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= link_to post.to_s.presence || "Post ##{post.id}", post_path(post) %>
           <span>
-            <%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-outline-secondary" %>
-            <%= button_to "Delete", post_path(post), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
+            <%= link_to "Edit", edit_post_path(post, return_to: request.original_fullpath), class: "btn btn-sm btn-outline-secondary" %>
+            <%= button_to "Delete", post_path(post, return_to: request.original_fullpath), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } %>
           </span>
         </li>
       <% end %>

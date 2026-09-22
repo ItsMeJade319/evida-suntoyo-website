@@ -120,6 +120,16 @@ class GuidesControllerTest < ActionDispatch::IntegrationTest
       delete guide_url(@guide)
     end
 
+    assert_redirected_to guides_url
+  end
+
+  test "should destroy guide and return to return_to param when signed in as admin" do
+    sign_in admins(:one)
+
+    assert_difference("Guide.count", -1) do
+      delete guide_url(@guide), params: { return_to: admin_path }
+    end
+
     assert_redirected_to admin_url
   end
 end

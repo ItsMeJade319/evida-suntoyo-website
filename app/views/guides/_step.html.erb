@@ -1,0 +1,17 @@
+<section class="guide-step-card">
+
+  <div class="pb-2">
+    <h3 class="guide-step-title">Step <%= step_number %>: <%= step.title %></h3>
+    <hr>
+  </div>
+
+  <% if step.image.attached? %>
+    <div class="guide-step-image-wrap">
+      <%= image_tag step.image.variant(resize_to_limit: [ 800, 600 ]), class: "guide-step-image" %>
+    </div>
+  <% end %>
+
+  <div class="guide-step-instruction">
+    <%= simple_format(step.content) %>
+  </div>
+</section>

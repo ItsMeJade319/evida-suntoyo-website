@@ -1,3 +1,7 @@
+html {
+  scrollbar-gutter: stable;
+}
+
 .container {
   --bs-gutter-x: 1rem;
 }

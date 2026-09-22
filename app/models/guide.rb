@@ -26,7 +26,16 @@ class Guide < ApplicationRecord
   private
 
   def generate_slug
-    self.slug = title.parameterize
+    base_slug = title.parameterize
+    candidate = base_slug
+    suffix = 2
+
+    while Guide.where(slug: candidate).where.not(id: id).exists?
+      candidate = "#{base_slug}-#{suffix}"
+      suffix += 1
+    end
+
+    self.slug = candidate
   end
 
   def set_published_at

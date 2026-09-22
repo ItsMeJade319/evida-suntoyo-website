@@ -1,0 +1,55 @@
+.guide-header {
+  margin-bottom: 2rem;
+}
+
+.guide-title {
+  font-weight: 700;
+}
+
+.guide-release-date {
+  font-size: 0.95rem;
+}
+
+.guide-description {
+  margin-top: 1rem;
+}
+
+.guide-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.guide-step-card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.guide-step-title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.guide-step-image-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.guide-step-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.guide-step-instruction {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.guide-step-instruction :last-child {
+  margin-bottom: 0;
+}
