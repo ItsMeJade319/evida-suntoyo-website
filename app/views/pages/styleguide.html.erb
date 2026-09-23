@@ -152,4 +152,26 @@
     </div>
     <p class="caption mb-0"><code>.highlight-row-list</code> &middot; <code>.highlight-row</code> &middot; <code>.highlight-row-left</code> &middot; <code>.monogram</code></p>
   </div>
+
+  <div class="mb-5">
+    <p class="label mb-2">ConfirmDialog</p>
+    <div class="d-flex flex-wrap gap-3 mb-2">
+      <div class="confirm-dialog" style="max-width: 380px;">
+        <p class="confirm-dialog-message">Delete this guide? This can't be undone.</p>
+        <div class="confirm-dialog-actions d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-secondary" tabindex="-1">Confirm</button>
+          <button type="button" class="btn btn-danger" tabindex="-1">Cancel</button>
+        </div>
+      </div>
+
+      <div class="confirm-dialog" style="max-width: 380px;">
+        <p class="confirm-dialog-message">Log out of the admin dashboard?</p>
+        <div class="confirm-dialog-actions d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-secondary" tabindex="-1">Confirm</button>
+          <button type="button" class="btn btn-primary" tabindex="-1">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <p class="caption mb-0"><code>.confirm-overlay</code> &middot; <code>.confirm-dialog</code> &middot; <code>.confirm-dialog-message</code> &middot; <code>.confirm-dialog-actions</code> &middot; <code>.confirm-dialog-cancel</code> / <code>.confirm-dialog-confirm</code> &middot; replaces <code>window.confirm()</code> for every <code>data-turbo-confirm</code> action (sign out, delete guide/post) via <code>Turbo.config.forms.confirm</code> &mdash; Cancel is always the emphasized action (<code>.btn-danger</code> for destructive actions, <code>.btn-primary</code> otherwise), Confirm is always <code>.btn-secondary</code></p>
+  </div>
 </div>

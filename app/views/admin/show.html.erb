@@ -11,7 +11,7 @@
       <i class="bi bi-person-circle"></i>
       <%= current_admin.email %>
     </span>
-    <%= button_to destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1", form: { data: { turbo_confirm: "Are you sure you want to sign out?" } } do %>
+    <%= button_to destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1", form: { data: { turbo_confirm: "Log out of the admin dashboard?" } } do %>
       <i class="bi bi-box-arrow-right"></i>
       Sign out
     <% end %>
@@ -83,7 +83,7 @@
         <%= link_to (is_guide ? edit_guide_path(item, return_to: request.original_fullpath) : edit_post_path(item, return_to: request.original_fullpath)), class: "btn btn-sm btn-outline-secondary" do %>
           <i class="bi bi-pencil"></i>
         <% end %>
-        <%= button_to (is_guide ? guide_path(item, return_to: request.original_fullpath) : post_path(item, return_to: request.original_fullpath)), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } do %>
+        <%= button_to (is_guide ? guide_path(item, return_to: request.original_fullpath) : post_path(item, return_to: request.original_fullpath)), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Delete this #{is_guide ? "guide" : "post"}? This can't be undone." } } do %>
           <i class="bi bi-trash"></i>
         <% end %>
       </div>

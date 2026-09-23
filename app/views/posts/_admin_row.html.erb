@@ -19,7 +19,7 @@
     <%= link_to edit_post_path(post, return_to: request.original_fullpath), class: "btn btn-sm btn-outline-secondary" do %>
       <i class="bi bi-pencil"></i>
     <% end %>
-    <%= button_to post_path(post, return_to: request.original_fullpath), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Are you sure?" } } do %>
+    <%= button_to post_path(post, return_to: request.original_fullpath), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Delete this post? This can't be undone." } } do %>
       <i class="bi bi-trash"></i>
     <% end %>
   </div>

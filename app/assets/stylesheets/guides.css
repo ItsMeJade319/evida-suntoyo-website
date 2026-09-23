@@ -6,6 +6,14 @@
   font-weight: 700;
 }
 
+.guide-card-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
 .guide-release-date {
   font-size: 0.95rem;
 }
