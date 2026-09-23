@@ -1,3 +1,15 @@
-<div class="p-5">
-
-</div>
+<footer id="contact" class="site-footer">
+  <div class="container">
+    <p class="eyebrow mb-3">Contact</p>
+    <div class="footer-contact-list">
+      <%= link_to "mailto:Evida@evidasuntoyo.com", class: "footer-contact-link" do %>
+        <i class="bi bi-envelope" aria-hidden="true"></i>
+        <span>Evida@evidasuntoyo.com</span>
+      <% end %>
+      <%= link_to "https://www.linkedin.com/in/evida-suntoyo/", class: "footer-contact-link", target: "_blank", rel: "noopener" do %>
+        <i class="bi bi-linkedin" aria-hidden="true"></i>
+        <span>LinkedIn</span>
+      <% end %>
+    </div>
+  </div>
+</footer>

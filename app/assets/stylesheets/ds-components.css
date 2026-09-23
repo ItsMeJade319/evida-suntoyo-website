@@ -106,12 +106,15 @@
 /* NavBar — wordmark left, links + the Resume button right, a hairline
    underneath. Exactly one link is ever active. */
 
+.navbar-bar {
+  border-bottom: 1px solid var(--border);
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--border);
   box-sizing: border-box;
 }
 
@@ -153,6 +156,70 @@
 
 .navbar .btn-secondary {
   padding: 9px 20px;
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  color: var(--primary);
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: var(--space-1) var(--space-3) var(--space-3);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(27, 50, 48, 0.1);
+  }
+
+  .navbar.nav-open .nav-links {
+    display: flex;
+  }
+
+  .nav-links .nav-link {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links .nav-link.active {
+    border-bottom-color: var(--primary);
+  }
+
+  .navbar .btn-secondary {
+    margin-top: var(--space-2);
+    text-align: center;
+  }
 }
 
 /* SectionLabel — the one section-heading pattern in this system: an eyebrow
@@ -268,6 +335,50 @@
   line-height: 1.4;
   font-weight: 400;
   color: var(--ink-muted);
+}
+
+/* Footer — the single point of contact info: email + social, nothing else.
+   Solid primary background, on-primary text — the same pairing .btn-primary
+   already uses, so contrast is proven, not guessed. */
+
+.site-footer {
+  background: var(--primary);
+  padding: var(--space-4) 0;
+}
+
+.site-footer .eyebrow {
+  color: var(--on-primary);
+  opacity: 0.65;
+}
+
+.footer-contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--on-primary);
+  text-decoration: none;
+}
+
+.footer-contact-link i {
+  color: var(--on-primary);
+  font-size: 18px;
+}
+
+.footer-contact-link:hover {
+  color: var(--tertiary);
+}
+
+.footer-contact-link:hover i {
+  color: var(--tertiary);
 }
 
 /* ConfirmDialog — replaces the native browser confirm() for every

@@ -4,7 +4,9 @@
 
 <%= render 'pages/career' %>
 
-<%= render 'pages/recent_guides' %>
+<% if @recent_guides.any? %>
+  <%= render 'pages/recent_guides' %>
+<% end %>
 
 <% if @recent_posts.any? %>
   <%= render 'pages/recent_posts' %>

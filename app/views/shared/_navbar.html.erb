@@ -1,11 +1,17 @@
-<nav class="navbar container">
-  <%= link_to "Evida Suntoyo", root_path, class: "nav-brand fw-bold" %>
+<div class="navbar-bar">
+  <nav class="navbar container">
+    <%= link_to "Evida Suntoyo", root_path, class: "nav-brand fw-bold" %>
 
-  <div class="nav-links">
-    <%= link_to "About", root_path, class: nav_link_class(root_path) %>
-    <%= link_to "Guides", guides_path, class: nav_link_class(guides_path) %>
-    <%= link_to "Blog", posts_path, class: nav_link_class(posts_path) %>
-    <%= link_to "Contact", new_contact_path, class: nav_link_class(new_contact_path) %>
-    <%= link_to "Resume", resume_path, class: "btn btn-secondary" %>
-  </div>
-</nav>
+    <button type="button" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
+
+    <div class="nav-links">
+      <%= link_to "About", root_path, class: nav_link_class(root_path) %>
+      <%= link_to "Guides", guides_path, class: nav_link_class(guides_path) %>
+      <%= link_to "Blog", posts_path, class: nav_link_class(posts_path) %>
+      <%= link_to "Contact", "#contact", class: "nav-link" %>
+      <%= link_to "Resume", resume_path, class: "btn btn-secondary" %>
+    </div>
+  </nav>
+</div>
